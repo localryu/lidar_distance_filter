@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(lidar_distance_filter)
 
-## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
 
 find_package(catkin REQUIRED COMPONENTS
@@ -29,4 +28,3 @@ add_executable(${PROJECT_NAME} src/lidar_filter.cpp)
 target_link_libraries(${PROJECT_NAME}
    ${catkin_LIBRARIES}
  )
-
