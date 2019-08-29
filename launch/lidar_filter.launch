@@ -1,7 +1,7 @@
 <!-- -->
 <launch>
   <node pkg="lidar_distance_filter" type="lidar_distance_filter" name="lidar_filter" output="screen">
-    <param name="Distance" value="6.5"/> 
+    <param name="Distance" value="8.0"/> 
    <!--remap from="/points_raw" to="/sync_drivers/points_raw" if="$(arg sync)" /-->
   </node>
 </launch>
