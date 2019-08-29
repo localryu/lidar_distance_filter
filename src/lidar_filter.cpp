@@ -72,7 +72,7 @@ int main(int argc, char** argv)
 	ros::init(argc, argv, "filter");
 	Filter Filter;
 
-	ros::Rate rate(10);
+	ros::Rate rate(30);
 	while(ros::ok()){
 		ros::spinOnce();
 		rate.sleep();
