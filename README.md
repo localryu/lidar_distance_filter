@@ -1,6 +1,6 @@
 # lidar_distance_filter
 
- ### ROS velodyne lidat distance filtering package.
+ ### ROS velodyne lidar distance filtering package.
  
  ## Run
     roslaunch lidar_distance_filter lidar_distance_filter.launch
