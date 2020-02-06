@@ -37,7 +37,7 @@ Filter::Filter()
 	nh_ = ros::NodeHandle("~");
 
 	velodyne_points = nh_.subscribe("/velodyne_points", 10, &Filter::lidarCb, this);
-	cloud_filtered_ = nh_.advertise<PointCloud>("cloud_filtered",1);
+	cloud_filtered_ = nh_.advertise<PointCloud>("cloud_filtered",1);	
 	//sensor_msgs::PointCloud2 cloud_filtered;
 	nh_.param("Distance", distance, float(20.0));
 	//distance = 20.0;
@@ -50,19 +50,19 @@ void Filter::lidarCb(const sensor_msgs::PointCloud2ConstPtr& cloud)
 	PointCloud::Ptr current_cloud (new PointCloud);
 	PointCloud f_cloud;
 	pcl::fromROSMsg(*cloud, *current_cloud);
-
+	
 	f_cloud.header = current_cloud->header;
 	int num_points = 0;
 	for(int p = 0; p < current_cloud->points.size(); p++){
-
+		
 		d_sum = 0;
 		d_sum = sqrt((current_cloud->points[p].x * current_cloud->points[p].x) + (current_cloud->points[p].y * current_cloud->points[p].y) + (current_cloud->points[p].z * current_cloud->points[p].z));
-
-		if((d_sum < distance) && (current_cloud->points[p].x > 2.0) && (current_cloud->points[p].z > -0.7)){
+	
+		if(d_sum < distance){
 			f_cloud.points.push_back(current_cloud->points[p]);
 		}
 	}
-
+	
 	pcl::toROSMsg(f_cloud, cloud_filtered);
 	cloud_filtered_.publish(cloud_filtered);
 
@@ -79,3 +79,4 @@ int main(int argc, char** argv)
 	}
 	return 0;
 }
+
