@@ -58,7 +58,7 @@ void Filter::lidarCb(const sensor_msgs::PointCloud2ConstPtr& cloud)
 		d_sum = 0;
 		d_sum = sqrt((current_cloud->points[p].x * current_cloud->points[p].x) + (current_cloud->points[p].y * current_cloud->points[p].y) + (current_cloud->points[p].z * current_cloud->points[p].z));
 
-		if((d_sum < distance) && (current_cloud->points[p].x > 2.0) && (current_cloud->points[p].z > -0.7)){
+		if(d_sum > distance){
 			f_cloud.points.push_back(current_cloud->points[p]);
 		}
 	}
